@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joc de Preguntes sobre la UE</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #003399;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .question-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #e7f1ff;
+        }
+        .question {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        .answer-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .btn {
+            background-color: #003399;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #002266;
+        }
+        .btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .score-display {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin: 20px 0;
+            position: relative;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #003399;
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        .question-counter {
+            text-align: center;
+            font-size: 0.9em;
+            margin-top: 5px;
+            color: #555;
+        }
+        .game-over {
+            text-align: center;
+            display: none;
+        }
+        .eu-flag {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .eu-flag img {
+            max-width: 100px;
+        }
+        .start-screen {
+            text-align: center;
+        }
+        .game-screen {
+            display: none;
+        }
+        .question-with-flag {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .country-flag {
+            width: 80px;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="eu-flag">
+           <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" alt="Bandera de la UE">
+        </div>
+        <h1>Joc de Preguntes sobre la Unió Europea</h1>
+        
+        <!-- Pantalla de inicio -->
+        <div id="start-screen" class="start-screen">
+            <p>Posa a prova els teus coneixements sobre els països de la Unió Europea i les seves capitals.</p>
+            <button id="start-btn" class="btn">Començar Joc</button>
+        </div>
+        
+        <!-- Pantalla de juego -->
+        <div id="game-screen" class="game-screen">
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar"></div>
+                <div id="question-counter" class="question-counter">Pregunta 0 de 0</div>
+            </div>
+            <div class="score-display">
+                Puntuació: <span id="score">0</span>/<span id="total-questions">0</span>
+            </div>
+            
+            <div id="question-container" class="question-container">
+                <div id="question" class="question"></div>
+                <input type="text" id="answer-input" class="answer-input" placeholder="Escriu la teva resposta aquí">
+                <button id="submit-btn" class="btn">Envia</button>
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </div>
+        
+        <!-- Pantalla de fin de juego -->
+        <div id="game-over" class="game-over">
+            <h2>Joc Finalitzat!</h2>
+            <p>Puntuació final: <span id="final-score">0</span>/<span id="final-total">0</span> (<span id="final-percentage">0</span>%)</p>
+            <button id="restart-btn" class="btn">Jugar de Nou</button>
+        </div>
+    </div>
+
+    <script src="country_flags.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
